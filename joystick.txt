@@ -1,0 +1,30 @@
+#define horizontal A0
+#define vertical A1
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(horizontal, OUTPUT);
+  pinMode(vertical, OUTPUT);
+}
+
+void loop() {
+  int h = analogRead(horizontal);
+  int v = analogRead(vertical);
+
+  h = map(h, 1, 1023, 0, 99);
+  v = map(v, 1, 1023, 0, 99);
+
+  Serial.print("\nJOYSTICK AT ");
+  if(h==49)
+  {
+    if(v==99)
+      Serial.print("TOP SIDE");
+    if(v==0)
+      Serial.print("DOWN SIDE");
+  }
+  else if(h==99 && v==49)
+    Serial.print("LEFT SIDE");
+  else if(h==0 && v==49)
+    Serial.print("RIGHT SIDE");
+  delay(500);
+}

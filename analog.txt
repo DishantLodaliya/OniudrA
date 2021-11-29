@@ -1,0 +1,24 @@
+#define SENSOR A0
+const byte leds[] = {2,3,4};
+const int thres = 1024 / 3;
+void setup() {
+  pinMode(SENSOR, INPUT);
+  for(int i = 0; i < 3; i++)
+    pinMode(leds[i], OUTPUT);
+}
+
+void loop() {
+  int data = analogRead(SENSOR);
+  for(int i = 0; i < 3; i++)
+    digitalWrite(leds[i], LOW);
+  if(data > 0){
+    digitalWrite(leds[0], HIGH);
+  }
+  if(data > thres){
+    digitalWrite(leds[1], HIGH);
+  }
+  if(data > 2 * thres){
+    digitalWrite(leds[2], HIGH);
+  }
+  delay(400);
+}

@@ -1,0 +1,27 @@
+#include <LiquidCrystal.h>
+LiquidCrystal lcd(12, 11, 10, 9, 8, 7);
+
+void setup()
+{
+  lcd.begin(16, 2);
+}
+
+void loop()
+{
+  lcd.setCursor(0,0);        
+  lcd.print("      Arduino Lab    ");  
+
+  lcd.setCursor(0, 1); 
+  String txt = "  By Dishant Lodaliya  ";
+
+  lcd.print(txt); 
+  delay(400);
+
+  for(int pos=0; pos<txt.length(); pos++)
+  {
+    lcd.scrollDisplayLeft(); 
+    //lcd.scrollDisplayRight();
+    delay(250);
+  }
+  lcd.clear();
+}
